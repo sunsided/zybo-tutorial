@@ -75,7 +75,7 @@
 
 <img src="images/tutorial-1/tutorial-91.png" title="PlanAhead: UCF location" />
 
-<p>Within the editor, comment out all the <code>sw&lt;..&gt;</code>, <code>btn&lt;..&gt;</code> and <code>led&lt;..&gt;</code> lines. The number of constrained pins should match the number of your signals,
+<p>Within the editor, uncomment all the <code>sw&lt;..&gt;</code>, <code>btn&lt;..&gt;</code> and <code>led&lt;..&gt;</code> lines. The number of constrained pins should match the number of your signals,
 so this effectively is where your <code>C_NUM_LEDS</code> generic comes into play.</p>
 
 <img src="images/tutorial-1/tutorial-92.png" title="PlanAhead: Edit UCF" />
@@ -115,12 +115,12 @@ so this effectively is where your <code>C_NUM_LEDS</code> generic comes into pla
 <img src="images/tutorial-1/tutorial-99.png" title="PlanAhead: Reading and processing constraints" />
 
 <p>You may be confronted with three "Critical Messages" about the PS7 instance that turn out to be entirely uncritical to us. These 
-non-warnings appear on both the ZYBO and the ZedBoard and I can not explain their cause, but since ignoring themdoesn't 
-seem to do any harm - just click OK.</p>
+non-warnings appear on both the ZYBO and the ZedBoard and I can not explain their cause, but since ignoring them doesn't 
+seem to do any harm - just click <code>OK</code>.</p>
 
 <img src="images/tutorial-1/tutorial-100.png" title="PlanAhead: Launch Run Critical Messages" />
 
-<p>Again, the dialog disappears just to leave us with the smaller progress bar in the upper right. You'll find <code>Running NDGBuild</code> ...</p>
+<p>Again, the dialog disappears just to leave us with the smaller progress bar in the upper right. You'll find <code>Running NGDBuild</code> ...</p>
 
 <img src="images/tutorial-1/tutorial-101.png" title="PlanAhead: Running NGDBuild" />
 
@@ -163,8 +163,8 @@ SDK. We can do that now using the <code>File, Export, Export Hardware for SDK</c
 <img src="images/tutorial-1/tutorial-109.png" title="PlanAhead: Export Hardware for SDK" />
 
 <p>In the upcoming dialog, among <code>Export Hardware</code> and <code>Launch SDK</code>, select <code>Include bitstream</code>. If this option is greyed out, press Cancel and select
-  <code>Open Implemented Design</code> in the Implementation section of the Flow Navigator tab, then export again.</p>
-<p>This is also a quick way to re-launch SDK should you need to close it later on, which you probably will due to buggy behavior.</p>
+  <code>Open Implemented Design</code> in the Implementation section of the Flow Navigator pane, then export again.</p>
+<p>This is also a quick way to re-launch SDK should you need to do so.</p>
 
 <img src="images/tutorial-1/tutorial-120.png" title="Export Hardware for SDK" />
 
@@ -179,7 +179,7 @@ SDK. We can do that now using the <code>File, Export, Export Hardware for SDK</c
 
 <img src="images/tutorial-1/tutorial-110.png" title="PlanAhead: Launch iMPACT" />
 
-<p>If you happen to have the <strong>Digilent Adept</strong> suite and the <strong>Digilent Xilinx plugins</strong> installed <emph>and</emph> your cable driver configured, you may see a window like the following. You <strong>will</strong> need both Adept and the plugins along the way, so download and install them now if they are still missing.</p>
+<p>If you happen to have the <strong>Digilent Adept</strong> suite and the <strong>Digilent Plugins for Xilinx Tools</strong> installed <emph>and</emph> your cable driver configured, you may see a window like the following. You <strong>will</strong> need both Adept and the plugins along the way, so download and install them now if they are still missing.</p>
 
 <img src="images/tutorial-1/tutorial-111.png" title="iMPACT: Boundary Scan" />
 
@@ -188,6 +188,8 @@ SDK. We can do that now using the <code>File, Export, Export Hardware for SDK</c
 <img src="images/tutorial-1/tutorial-112.png" title="iMPACT: Cable Setup" />
 
 <p>In the following dialog select the <code>Digilent USB JTAG Cable</code> option (available after installing Adept and the Digilent Plugins) and select your board in the <code>Port</code> dropdown. Close the dialog, accepting the changes.</p>
+
+<p>Should the cable option appear and the Port dropdown remain empty, make sure you really installed the latest version of Adept.</p>
 
 <img src="images/tutorial-1/tutorial-113.png" title="iMPACT: Cable Communication Setup" />
 
@@ -200,7 +202,7 @@ SDK. We can do that now using the <code>File, Export, Export Hardware for SDK</c
 
 <img src="images/tutorial-1/tutorial-115.png" title="iMPACT: Program" />
 
-<p>In the Device Programming Properties dialog that pops up, just click OK.</p>
+<p>In the Device Programming Properties dialog that pops up, just click <code>OK</code>.</p>
 
 <img src="images/tutorial-1/tutorial-116.png" title="iMPACT: Device Programming Properties" />
 
