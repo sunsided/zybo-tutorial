@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="ZYBO Quick-Start Tutorial : Quick-start tutorial for the Digilent ZYBO Zynq-7010 FPGA board using ISE 14/PlanAhead" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>ZYBO Quick-Start Tutorial</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+<!--
+          <a id="forkme_banner" href="https://github.com/sunsided/zybo-tutorial">View on GitHub</a>
+-->
+          <a href="index.html" rel="index"><h1 id="project_title">ZYBO Quick-Start Tutorial</h1></a>
+          <h2 id="project_tagline">Quick-start tutorial for the Digilent ZYBO Zynq-7010 FPGA board using ISE 14/PlanAhead</h2>
+<!--
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sunsided/zybo-tutorial/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sunsided/zybo-tutorial/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+-->
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Part 5: Programming the Processing System</h2>
+
+<h3><a name="application-and-bsp" class="anchor" href="#application-and-bsp"><span class="octicon octicon-link"></span></a>Create an Application Project and a Board Support Package</h3>
+
+<img src="images/tutorial-1/tutorial-121.png" title="Xilinx SDK" />
+<img src="images/tutorial-1/tutorial-122.png" title="Xilinx SDK: New Application Project" />
+<img src="images/tutorial-1/tutorial-123.png" title="Xilinx SDK: New Project, new BSP" />
+
+<p>Wait for the build of the BSP to finish.</p>
+
+<img src="images/tutorial-1/tutorial-124.png" title="Xilinx SDK: Project" />
+<img src="images/tutorial-1/tutorial-125.png" title="Xilinx SDK: Hello World" />
+
+<h3><a name="program-fpga" class="anchor" href="#program-fpga"><span class="octicon octicon-link"></span></a>Program FPGA</h3>
+
+<img src="images/tutorial-1/tutorial-126.png" title="Xilinx SDK: Programming the FPGA" />
+
+<p>Make sure the exported Bitstream is selected. If the field is empty and the <code>Search...</code> box lists no bitstream file, you probably missed exporting it to the SDK. You may either repeat that step or use <code>Browse...</code> here to navigate to the bitstream file up the directory hierarchy.</p>
+
+<img src="images/tutorial-1/tutorial-127.png" title="Program FPGA" />
+
+<p>When doing this the first time you will probably run into the error message <code>Program FPGA failed</code> due to the missing Xilinx Hardware Server.</p>
+
+<img src="images/tutorial-1/tutorial-128.png" title="Program FPGA Failed" />
+
+<p>Since we do not use that, we need to change that using the <code>Xilinx Tools, Configure JTAG Settings</code> menu.</p>
+
+<img src="images/tutorial-1/tutorial-129.png" title="Xilinx SDK: Configure JTAG Settings" />
+
+<p>In the dialog, select the <code>Digilent USB Cable</code> and confirm the change, closing the dialog.</p>
+
+<img src="images/tutorial-1/tutorial-130.png" title="Configure JTAG Settings" />
+
+<p>After that, flash again and wait for the message <code>FPGA configured successfully with bitstream</code> to appear in the console.</p>
+
+<img src="images/tutorial-1/tutorial-131.png" title="FPGA successfully configured" />
+
+
+<h3><a name="run-and-debug-program" class="anchor" href="#run-and-debug-program"><span class="octicon octicon-link"></span></a>Run and debug the program</h3>
+
+<img src="images/tutorial-1/tutorial-132.png" title="Xilinx SDK: Launch on Hardware (GDB)" />
+<img src="images/tutorial-1/tutorial-133.png" title="Xilinx SDK: Perspective Switch" />
+<img src="images/tutorial-1/tutorial-134.png" title="Xilinx SDK: Debug Perspective, First Breakpoint" />
+<img src="images/tutorial-1/tutorial-135.png" title="Xilinx SDK: Connecting the Terminal" />
+<img src="images/tutorial-1/tutorial-136.png" title="Xilinx SDK: Terminal Settings" />
+<img src="images/tutorial-1/tutorial-137.png" title="Xilinx SDK: Step Over + Success" />
+
+<p>Play around with the switches and buttons and see if it works.</p>
+
+<img src="images/tutorial-1/tutorial-118.jpg" title="The final result." />
+
+<p>Having the switches and buttons <code>xor</code>'d, note how the leftmost LED is down, while the rightmost LED is high. Have fun!</p>
+
+<h3><a name="notes-about-reset" class="anchor" href="#notes-about-reset"><span class="octicon octicon-link"></span></a>Notes about resetting the system</h3>
+
+<p>At the moment all configuration is stored in a volatile manner. Resetting either the Processing System using the <code>PS-SRST</code> or the Programmable Logic using the <code>PROGB</code> button will revert any changes. If you have a vanilly ZYBO with the Terminal still attached, an output like the following may occur.</p>
+
+<img src="images/tutorial-1/tutorial-138-after-ps-srst.png" title="Xilinx SDK: After Resetting the PS" />
+
+<p>That's a different story though.</p>
+
+<h3>
+<a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>
+
+<ul>
+  <li>Previous: <a href="part-04.html" title="Creating the Bitstream" rel="follow,prev">Creating the Bitstream.</a></li>
+  <li>Back to the start: <a href="index.html" title="Table of contents" rel="follow,index">Table of contents.</a></li>
+</ul>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">ZYBO Quick-Start Tutorial maintained by <a href="https://github.com/sunsided">sunsided</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="ZYBO Quick-Start Tutorial : Quick-start tutorial for the Digilent ZYBO Zynq-7010 FPGA board using ISE 14/PlanAhead" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>ZYBO Quick-Start Tutorial</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+<!--
+          <a id="forkme_banner" href="https://github.com/sunsided/zybo-tutorial">View on GitHub</a>
+-->
+          <a href="index.html" rel="index"><h1 id="project_title">ZYBO Quick-Start Tutorial</h1></a>
+          <h2 id="project_tagline">Quick-start tutorial for the Digilent ZYBO Zynq-7010 FPGA board using ISE 14/PlanAhead</h2>
+<!--
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sunsided/zybo-tutorial/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sunsided/zybo-tutorial/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+-->
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Part 4: Synthesizing and creating the Bitstream</h2>
+
+<h3><a name="top-level-and-ucf" class="anchor" href="#top-level-and-ucf"><span class="octicon octicon-link"></span></a>Creating the top-level wrapper and adding user constraints</h3>
+
+<img src="images/tutorial-1/tutorial-83.png" title="PlanAhead: Project Sources: XMP File" />
+<img src="images/tutorial-1/tutorial-84.png" title="PlanAhead: Project Sources: Create Top HDL" />
+<img src="images/tutorial-1/tutorial-85.png" title="PlanAhead: Project Sources: Top HDL stub" />
+<img src="images/tutorial-1/tutorial-86.png" title="PlanAhead: Add Sources" />
+<img src="images/tutorial-1/tutorial-87.png" title="PlanAhead: Add or Create Constraints" />
+<img src="images/tutorial-1/tutorial-88.png" title="Add Sources: Add or Create Constraints: Add Files" />
+<img src="images/tutorial-1/tutorial-89.png" title="Add Sources: Add or Create Constraints: Copy ZYBO Master UCF" />
+<img src="images/tutorial-1/tutorial-90.png" title="PlanAhead: ZYBO Master UCF" />
+<img src="images/tutorial-1/tutorial-91.png" title="PlanAhead: UCF location" />
+<img src="images/tutorial-1/tutorial-92.png" title="PlanAhead: Edit UCF" />
+<img src="images/tutorial-1/tutorial-93.png" title="PlanAhead: Set internal pin names" />
+
+<h3><a name="synthesis" class="anchor" href="#synthesis"><span class="octicon octicon-link"></span></a>Synthesizing the design</h3>
+
+<img src="images/tutorial-1/tutorial-94.png" title="PlanAhead: Synthesize" />
+<img src="images/tutorial-1/tutorial-95.png" title="PlanAhead: Starting Synthesis" />
+<img src="images/tutorial-1/tutorial-96.png" title="PlanAhead: Running XST" />
+<img src="images/tutorial-1/tutorial-97.png" title="PlanAhead: Synthesis completed" />
+
+<h3><a name="implementation" class="anchor" href="#implementation"><span class="octicon octicon-link"></span></a>Implementing the design</h3>
+
+<img src="images/tutorial-1/tutorial-98.png" title="PlanAhead: Starting implementation" />
+<img src="images/tutorial-1/tutorial-99.png" title="PlanAhead: Reading and processing constraints" />
+
+You may be confronted with some "Critical Messages" that turn out to be entirely uncritical to us. These 
+non-warnings appear on both the ZYBO and the ZedBoard and I can not explain their cause, but since ignoring themdoesn't 
+seem to do any harm - just click OK.
+
+<img src="images/tutorial-1/tutorial-100.png" title="PlanAhead: Launch Run Critical Messages" />
+<img src="images/tutorial-1/tutorial-101.png" title="PlanAhead: Running NGDBuild" />
+<img src="images/tutorial-1/tutorial-102.png" title="PlanAhead: Running MAP" />
+<img src="images/tutorial-1/tutorial-103.png" title="PlanAhead: Running PAR" />
+<img src="images/tutorial-1/tutorial-104.png" title="PlanAhead: Running TRCE" />
+<img src="images/tutorial-1/tutorial-105.png" title="PlanAhead: Running XDL" />
+<img src="images/tutorial-1/tutorial-106.png" title="PlanAhead: Implementation Completed" />
+
+<h3><a name="bitstream" class="anchor" href="#bitstream"><span class="octicon octicon-link"></span></a>Creating the Bitstream</h3>
+
+If we had not clicked "Generate Bitstream" in the last dialog window, we would chose the "Generate Bitstream" action under the"Program and Debug" section in the Flow Navigator now. Since we did chose it, however, we find the message "Running Bitgen"
+in the top right status bar.
+
+<img src="images/tutorial-1/tutorial-107.png" title="PlanAhead: Running Bitgen" />
+
+<p>After a short while the "Bitstream Generation Completed" dialog appears where we chose to open the implemented design.</p>
+
+<img src="images/tutorial-1/tutorial-108.png" title="PlanAhead: Bitstream Generation Completed" />
+
+<p>While we do not need the information at the moment, this will be a required step when exporting the hardware to the
+SDK. We can do that now using the <code>File, Export, Export Hardware for SDK</code> menu.</p>
+
+<img src="images/tutorial-1/tutorial-109.png" title="PlanAhead: Export Hardware for SDK" />
+
+<p>In the upcoming dialog, among <code>Export Hardware</code> and <code>Launch SDK</code>, select <code>Include bitstream</code>. If this option is greyed out, press Cancel and select
+  <code>Open Implemented Design</code> in the Implementation section of the Flow Navigator tab, then export again.</p>
+<p>This is also a quick way to re-launch SDK should you need to close it later on, which you probably will due to buggy behavior.</p>
+
+<img src="images/tutorial-1/tutorial-120.png" title="Export Hardware for SDK" />
+
+<p>After that, you might skip to the next part or read on if you are interested.</p>
+
+<h3><a name="using-impact" class="anchor" href="#using-impact"><span class="octicon octicon-link"></span></a>Optional: Programming the FPGA using iMPACT</h3>
+
+<p>Alternatively to using the SDK &mdash; or in addition to it &mdash; the FPGA can be configured (i.e. "programmed") right now using Xilinx iMPACT. We can do so by clicking <code>Launch iMPACT</code> in the Program and Debug section.</p>
+
+<p>Note that Zynq AP SoCs are bootstrapped by the ARM core, much like a regular microcontroller system where the FPGA acts as a slave during startup. That means that <strong>the following procedure will only work if the FPGA is already initialized by the ARM core</strong>, i.e. when the ARM core is already flashed with a program that initializes the FPGA. If you happen to have a vanilla ZYBO board with a Linux system running on the ARM Cortex, go on. Otherwise you will
+  have to create a program using Xilinx SDK first.<p>
+
+<img src="images/tutorial-1/tutorial-110.png" title="PlanAhead: Launch iMPACT" />
+
+<p>If you happen to have the <strong>Digilent Adept</strong> suite and the <strong>Digilent Xilinx plugins</strong> installed <emph>and</emph> your cable driver configured, you may see a window like the following. You <strong>will</strong> need both Adept and the plugins along the way, so download and install them now if they are still missing.</p>
+
+<img src="images/tutorial-1/tutorial-111.png" title="iMPACT: Boundary Scan" />
+
+<p>If you find an empty window or want to make sure everything is correct, check your cable setup by selecting <code>Output, Cable Setup...</code>.</p>
+
+<img src="images/tutorial-1/tutorial-112.png" title="iMPACT: Cable Setup" />
+
+<p>In the following dialog select the <code>Digilent USB JTAG Cable</code> option (available after installing Adept and the Digilent Plugins) and select your board in the <code>Port</code> dropdown. Close the dialog, accepting the changes.</p>
+
+<img src="images/tutorial-1/tutorial-113.png" title="iMPACT: Cable Communication Setup" />
+
+<p>In the <code>Boundary Scan</code> flow, both the ARM core and the FPGA should be detected now. Right-click the FPGA
+  and select <code>Set Target Device</code> to feel good.</p>
+
+<img src="images/tutorial-1/tutorial-114.png" title="iMPACT: Setting the target device" />
+
+<p>Next, by right-clicking the FPGA again, select <code>Program</code>.</p>
+
+<img src="images/tutorial-1/tutorial-115.png" title="iMPACT: Program" />
+
+<p>In the Device Programming Properties dialog that pops up, just click OK.</p>
+
+<img src="images/tutorial-1/tutorial-116.png" title="iMPACT: Device Programming Properties" />
+
+<p>After a short while, the FPGA should be programmed and already responding to your inputs. Try fiddling with the switches and buttons to see if it works. If it does not, make sure the ARM core is initialized first and/or move on to the SDK.</p>
+
+<img src="images/tutorial-1/tutorial-117.png" title="iMPACT: Program Succeeded" />
+
+<p>After that, close iMPACT and export the hardware for the SDK for profit and cake.</p>
+
+<img src="images/tutorial-1/tutorial-119.png" title="iMPACT: Program Succeeded" />
+
+<p>You may ignore the save dialog, as your changes here will be remembered anyway.</p>
+
+<h3>
+<a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>
+
+<ul>
+  <li>Previous: <a href="part-03.html" title="Peripheral import and ports configuration" rel="follow,prev">Peripheral import and ports configuration.</a></li>
+  <li>Next: <a href="part-05.html" title="Programming the Processing System" rel="follow,next">Programming the Processing System.</a></li>
+</ul>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">ZYBO Quick-Start Tutorial maintained by <a href="https://github.com/sunsided">sunsided</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

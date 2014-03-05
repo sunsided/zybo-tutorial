@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="ZYBO Quick-Start Tutorial : Quick-start tutorial for the Digilent ZYBO Zynq-7010 FPGA board using ISE 14/PlanAhead" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>ZYBO Quick-Start Tutorial</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+<!--
+          <a id="forkme_banner" href="https://github.com/sunsided/zybo-tutorial">View on GitHub</a>
+-->
+          <a href="index.html" rel="index"><h1 id="project_title">ZYBO Quick-Start Tutorial</h1></a>
+          <h2 id="project_tagline">Quick-start tutorial for the Digilent ZYBO Zynq-7010 FPGA board using ISE 14/PlanAhead</h2>
+<!--
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sunsided/zybo-tutorial/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sunsided/zybo-tutorial/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+-->
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Part 3: Peripheral import and ports configuration</h2>
+
+<h3><a name="peripheral-import" class="anchor" href="#peripheral-import"><span class="octicon octicon-link"></span></a>Re-importing the peripheral</h3>
+
+<img src="images/tutorial-1/tutorial-57.png" title="Xilinx Platform Studio: Peripheral import" />
+<img src="images/tutorial-1/tutorial-58.png" title="Import Peripheral: Peripheral flow" />
+<img src="images/tutorial-1/tutorial-59.png" title="Import Peripheral: Repository or project" />
+<img src="images/tutorial-1/tutorial-60.png" title="Import Peripheral: Name and version" />
+<img src="images/tutorial-1/tutorial-61.png" title="Overwrite Existing Peripheral" />
+<img src="images/tutorial-1/tutorial-62.png" title="Import Peripheral: Source File Types" />
+
+<h4><a name="peripheral-import-xst" class="anchor" href="#peripheral-import-xst"><span class="octicon octicon-link"></span></a>Option 1: Importing the XST project file</h3>
+
+<img src="images/tutorial-1/tutorial-63.png" title="Import Peripheral: HDL Source Files" />
+<img src="images/tutorial-1/tutorial-64.png" title="Import Peripheral: Select XST Project File" />
+<img src="images/tutorial-1/tutorial-65.png" title="Import Peripheral: HDL Analysis Information" />
+
+<h4><a name="peripheral-import-pao" class="anchor" href="#peripheral-import-pao"><span class="octicon octicon-link"></span></a>Option 2: Importing the PAO project file</h3>
+
+<img src="images/tutorial-1/tutorial-66.png" title="Import Peripheral: Select XST Project File" />
+<img src="images/tutorial-1/tutorial-67.png" title="Import Peripheral: Select PAO file" />
+<img src="images/tutorial-1/tutorial-68.png" title="Import Peripheral: HDL Source Files" />
+<img src="images/tutorial-1/tutorial-69.png" title="Import Peripheral: HDL Analysis Information" />
+
+<h3><a name="peripheral-import-configure" class="anchor" href="#peripheral-import-configure"><span class="octicon octicon-link"></span></a>IP Configuration</h3>
+
+<img src="images/tutorial-1/tutorial-70.png" title="Import Peripheral: Bus Interfaces" />
+<img src="images/tutorial-1/tutorial-71.png" title="Import Peripheral: AXI4LITE Port" />
+<img src="images/tutorial-1/tutorial-72.png" title="Import Peripheral: AXI4LITE Parameter (S_HIGHADDR)" />
+<img src="images/tutorial-1/tutorial-73.png" title="Import Peripheral: Parameter Attributes" />
+
+Next we can check our ports attributes (i.e. the direction mode, the name, default values etc.). Note that this dialog
+has a bug as per ISE Suite 14.7 preventing the displayed parameters to change once a value is selected. This does
+not affect the IP itself, so you can safely ignore it.
+
+<img src="images/tutorial-1/tutorial-74.png" title="Import Peripheral: Port Attributes" />
+<img src="images/tutorial-1/tutorial-75.png" title="Import Peripheral: Finish Line" />
+
+<h3><a name="update-ip-status" class="anchor" href="#update-ip-status"><span class="octicon octicon-link"></span></a>Update IP status</h3>
+
+<img src="images/tutorial-1/tutorial-76.png" title="Xilinx Platform Studio: IP Catalog: PRODUCTION" />
+<img src="images/tutorial-1/tutorial-77.png" title="Xilinx Platform Studio: IP Catalog: View MPD" />
+<img src="images/tutorial-1/tutorial-78.png" title="Xilinx Platform Studio: Rescan User Repositories" />
+<img src="images/tutorial-1/tutorial-79.png" title="Xilinx Platform Studio: IP Catalog: DEVELOPMENT" />
+
+
+<h3><a name="configure-ports" class="anchor" href="#configure-ports"><span class="octicon octicon-link"></span></a>Configuring the IP ports</h3>
+
+<img src="images/tutorial-1/tutorial-80.png" title="Xilinx Platform Studio: Ports tab" />
+<img src="images/tutorial-1/tutorial-81.png" title="Xilinx Platform Studio: Make external" />
+<img src="images/tutorial-1/tutorial-82.png" title="Xilinx Platform Studio: Ports made external" />
+
+Keep note of the port names (or change them by single-clicking on them) and close XPS. Doing so will save your changes.
+(Yes, ... I know.)
+
+<h3>
+<a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>
+
+<ul>
+  <li>Previous: <a href="part-02.html" title="Setting up a new project" rel="follow,prev">Editing the IP logic.</a></li>
+  <li>Next: <a href="part-04.html" title="Synthesizing and creating the Bitstream" rel="follow,next">Synthesizing and creating the Bitstream.</a></li>
+</ul>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">ZYBO Quick-Start Tutorial maintained by <a href="https://github.com/sunsided">sunsided</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
