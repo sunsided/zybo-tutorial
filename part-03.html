@@ -130,20 +130,45 @@ not affect the IP itself, so you can safely ignore it.
 
 <h3><a name="update-ip-status" class="anchor" href="#update-ip-status"><span class="octicon octicon-link"></span></a>Update IP status</h3>
 
+<p>Looking at the IP Catalog you will notice that the currently imported IP is now marked as <code>PRODUCTION</code>. In that status, the IP will only be synthesized once (i.e. a first time) and
+  wont ever update again, no matter how many changes you apply to the sources files. In order to continue developing on it, we'll need to change it back to <code>DEVELOPMENT</code>.</p>
+
 <img src="images/tutorial-1/tutorial-76.png" title="Xilinx Platform Studio: IP Catalog: PRODUCTION" />
+
+<p>Right-click it in the catalog and select <code>View MPD</code>.</p>
+
 <img src="images/tutorial-1/tutorial-77.png" title="Xilinx Platform Studio: IP Catalog: View MPD" />
+
+<p>You will notice that the <code>ARCH_SUPPORT_MAP</code> line is missing. Re-add it to the file, then select <code>Project, Rescan User Repository</code> to force XPS to re-read it.</p>
+
+<p>In case you didn't write it down, the missing line is:</p>
+
+<p><pre><code>OPTION ARCH_SUPPORT_MAP = (others=DEVELOPMENT)</code></pre></p>
+
 <img src="images/tutorial-1/tutorial-78.png" title="Xilinx Platform Studio: Rescan User Repositories" />
+
+<p>You will find that the IP is now marked as <code>DEVELOPMENT</code>.</p>
+
 <img src="images/tutorial-1/tutorial-79.png" title="Xilinx Platform Studio: IP Catalog: DEVELOPMENT" />
 
+<p>The import procedure should only be necessary when the public interface of the IP changes, i.e. when changes to the source wrapper file are made, or if additional files are added.</p>
 
 <h3><a name="configure-ports" class="anchor" href="#configure-ports"><span class="octicon octicon-link"></span></a>Configuring the IP ports</h3>
 
+<p>Head to the <code>Ports</code> tab of the System Assembly View. You will see that the re-imported IP now lists the three inputs we defined, and that they are currently unconnected. Note that the Range field matches the number of connections we defined in the generic parameter, <code>C_NUM_LEDS</code>.</p>
+
 <img src="images/tutorial-1/tutorial-80.png" title="Xilinx Platform Studio: Ports tab" />
+
+<p>In order to wire these signals to physical pins, we need to convert them to external connections. Right-click the entries and select <code>Make External</code>.</p>
+
 <img src="images/tutorial-1/tutorial-81.png" title="Xilinx Platform Studio: Make external" />
+
+<p>After that, they are listed as <code>External Ports</code> with default names based on the signals names and the IP name.</p>
+
 <img src="images/tutorial-1/tutorial-82.png" title="Xilinx Platform Studio: Ports made external" />
 
-Keep note of the port names (or change them by single-clicking on them) and close XPS. Doing so will save your changes.
-(Yes, ... I know.)
+<p>Keep note of these port names (or change them by single-clicking on them) and then close XPS. Doing so will save your changes.
+(Yes, ... I know.)</p>
 
 <h3>
 <a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>
