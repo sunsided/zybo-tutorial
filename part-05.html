@@ -37,32 +37,50 @@
 
 <h3><a name="application-and-bsp" class="anchor" href="#application-and-bsp"><span class="octicon octicon-link"></span></a>Create an Application Project and a Board Support Package</h3>
 
+<p>When selecting <code>Launch SDK</code> from the Export Hardware for SDK dialog for the first time, Xilinx SDK will open up and present us a project consisting of nothing but the hardware platform specification.</p>
+
+<p>You will find any useful information about memory addresses and components here. Note also the existence of the bitstream file, <code>system.bit</code>. If it does not appear here, go back to the previous step redo the export step. (You might have to open the implementation result manually before doing so.)</p>
+
 <img src="images/tutorial-1/tutorial-121.png" title="Xilinx SDK" />
+
+<p>Select <code>File, New, Application Project</code> to create a new project. When asked for a template, select <code>Hello World</code>. This option does not seem to appear always, though.</code></p>
+
 <img src="images/tutorial-1/tutorial-122.png" title="Xilinx SDK: New Application Project" />
+
+<p>Give the project a name, select the just exported hardware platform and chose to <code>Create a new Board Support Package</code>, then click <code>Finish</code>.</p>
+
 <img src="images/tutorial-1/tutorial-123.png" title="Xilinx SDK: New Project, new BSP" />
 
-<p>Wait for the build of the BSP to finish.</p>
+<p>After that, wait for the build of the BSP to finish.</p>
 
 <img src="images/tutorial-1/tutorial-124.png" title="Xilinx SDK: Project" />
+
+<p>Switch over to <code>helloworld.c</code> and enter <code>while(1) {}</code> just before the <code>return</code> statement to prevent the processor from halting.</p>
+
 <img src="images/tutorial-1/tutorial-125.png" title="Xilinx SDK: Hello World" />
 
 <h3><a name="program-fpga" class="anchor" href="#program-fpga"><span class="octicon octicon-link"></span></a>Program FPGA</h3>
+
+<p>Before running the program, we need to program the FPGA with the bitfile. In the toolbar, click <code>Program FPGA</code>.</code></p>
 
 <img src="images/tutorial-1/tutorial-126.png" title="Xilinx SDK: Programming the FPGA" />
 
 <p>Make sure the exported Bitstream is selected. If the field is empty and the <code>Search...</code> box lists no bitstream file, you probably missed exporting it to the SDK. You may either repeat that step or use <code>Browse...</code> here to navigate to the bitstream file up the directory hierarchy.</p>
 
+<p>With a bitstream file selected, click <code>Program</code>.</p>
+
 <img src="images/tutorial-1/tutorial-127.png" title="Program FPGA" />
 
-<p>When doing this the first time you will probably run into the error message <code>Program FPGA failed</code> due to the missing Xilinx Hardware Server.</p>
+<p>When doing this for the first time you will probably run into the error message <code>Program FPGA failed</code> due to the missing Xilinx Hardware Server.</p>
 
 <img src="images/tutorial-1/tutorial-128.png" title="Program FPGA Failed" />
 
-<p>Since we do not use that, we need to change that using the <code>Xilinx Tools, Configure JTAG Settings</code> menu.</p>
+<p>Since we do not use that &mdash; we have the Digilent plugins instead &mdash; we need to change the programmer cable settings using the <code>Xilinx Tools, Configure JTAG Settings</code> menu.</p>
 
 <img src="images/tutorial-1/tutorial-129.png" title="Xilinx SDK: Configure JTAG Settings" />
 
 <p>In the dialog, select the <code>Digilent USB Cable</code> and confirm the change, closing the dialog.</p>
+<p>If that option does not appear, make sure you have the recent Digilent Adept software and the Digilent Plugins for Xilinx Tools installed; You'll find them on the Digilent website. You may also need to restart Xilinx SDK after installing them &mdash; remember that you can always open it from the Export Hardware for SDK dialog in PlanAhead again.</p>
 
 <img src="images/tutorial-1/tutorial-130.png" title="Configure JTAG Settings" />
 
@@ -73,14 +91,31 @@
 
 <h3><a name="run-and-debug-program" class="anchor" href="#run-and-debug-program"><span class="octicon octicon-link"></span></a>Run and debug the program</h3>
 
+<p>Next we will create a run configuration. Click the Debug icon's down arrow in the toolbar and select <code>Debug As, Launch on Hardware (GDB)</code>. We cannot chose System Debugger instead, since we do not use the Xilinx tools.</p>
+
 <img src="images/tutorial-1/tutorial-132.png" title="Xilinx SDK: Launch on Hardware (GDB)" />
+
+<p>Confirm to switch the perspective, which is common Eclipse behavior.</p>
+
 <img src="images/tutorial-1/tutorial-133.png" title="Xilinx SDK: Perspective Switch" />
+
+<p>The program should launch an the execution will halt on the first line of <code>main()</code>.</p>
+
 <img src="images/tutorial-1/tutorial-134.png" title="Xilinx SDK: Debug Perspective, First Breakpoint" />
+
+<p>Switch to the <code>Terminal 1</code> tab at the bottom and click the <code>Connect</code> icon to open the terminal settings dialog.</p>
+
 <img src="images/tutorial-1/tutorial-135.png" title="Xilinx SDK: Connecting the Terminal" />
+
+<p>Select the board's connected COM port (check Windows' Device Manager to find it), set the Baud Rate to <code>115200</code> and click <code>OK</code>.</p>
+
 <img src="images/tutorial-1/tutorial-136.png" title="Xilinx SDK: Terminal Settings" />
+
+<p>After doing so, step over the next lines using the Step Over command of the debugger. You should eventually see the serial output in the terminal window.</p>
+
 <img src="images/tutorial-1/tutorial-137.png" title="Xilinx SDK: Step Over + Success" />
 
-<p>Play around with the switches and buttons and see if it works.</p>
+<p>And there you are. Play around with the switches and buttons on the board to see if it works.</p>
 
 <img src="images/tutorial-1/tutorial-118.jpg" title="The final result." />
 
@@ -93,6 +128,8 @@
 <img src="images/tutorial-1/tutorial-138-after-ps-srst.png" title="Xilinx SDK: After Resetting the PS" />
 
 <p>That's a different story though.</p>
+
+<p><strong>Have fun!</strong></p>
 
 <h3>
 <a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>
