@@ -39,11 +39,11 @@
 
 <p>When selecting <code>Launch SDK</code> from the Export Hardware for SDK dialog for the first time, Xilinx SDK will open up and present us a project consisting of nothing but the hardware platform specification.</p>
 
-<p>You will find any useful information about memory addresses and components here. Note also the existence of the bitstream file, <code>system.bit</code>. If it does not appear here, go back to the previous step redo the export step. (You might have to open the implementation result manually before doing so.)</p>
+<p>You will find any useful information about memory addresses and components here. Note also the existence of the bitstream file, <code>system.bit</code>. If it does not appear here, go back to PlanAhead an step redo the export step. (You might have to open the implementation result manually in PlanAhead before being able to doing so.)</p>
 
 <img src="images/tutorial-1/tutorial-121.png" title="Xilinx SDK" />
 
-<p>Select <code>File, New, Application Project</code> to create a new project. When asked for a template, select <code>Hello World</code>. This option does not seem to appear always, though.</code></p>
+<p>Select <code>File, New, Application Project</code> to create a new project. When asked for a template, select <code>Hello World</code>. This option does not always seem to appear, though.</code></p>
 
 <img src="images/tutorial-1/tutorial-122.png" title="Xilinx SDK: New Application Project" />
 
@@ -80,7 +80,7 @@
 <img src="images/tutorial-1/tutorial-129.png" title="Xilinx SDK: Configure JTAG Settings" />
 
 <p>In the dialog, select the <code>Digilent USB Cable</code> and confirm the change, closing the dialog.</p>
-<p>If that option does not appear, make sure you have the recent Digilent Adept software and the Digilent Plugins for Xilinx Tools installed; You'll find them on the Digilent website. You may also need to restart Xilinx SDK after installing them &mdash; remember that you can always open it from the Export Hardware for SDK dialog in PlanAhead again.</p>
+<p>If that option does not appear, make sure you have the recent (double-check that!) <code>Digilent Adept</code> software and the <code>Digilent Plugins for Xilinx Tools</code> installed; You'll find them on the Digilent website. You may also need to restart Xilinx SDK after installing them &mdash; remember that you can always open it from the Export Hardware for SDK dialog in PlanAhead again.</p>
 
 <img src="images/tutorial-1/tutorial-130.png" title="Configure JTAG Settings" />
 
@@ -99,7 +99,7 @@
 
 <img src="images/tutorial-1/tutorial-133.png" title="Xilinx SDK: Perspective Switch" />
 
-<p>The program should launch an the execution will halt on the first line of <code>main()</code>.</p>
+<p>The program should launch and the execution will halt on the first line of <code>main()</code>.</p>
 
 <img src="images/tutorial-1/tutorial-134.png" title="Xilinx SDK: Debug Perspective, First Breakpoint" />
 
@@ -111,7 +111,7 @@
 
 <img src="images/tutorial-1/tutorial-136.png" title="Xilinx SDK: Terminal Settings" />
 
-<p>After doing so, step over the next lines using the Step Over command of the debugger. You should eventually see the serial output in the terminal window.</p>
+<p>After doing so, step over the next lines using the <code>Step Over</code> command of the debugger. You should eventually see the serial output in the terminal window.</p>
 
 <img src="images/tutorial-1/tutorial-137.png" title="Xilinx SDK: Step Over + Success" />
 
@@ -123,7 +123,7 @@
 
 <h3><a name="notes-about-reset" class="anchor" href="#notes-about-reset"><span class="octicon octicon-link"></span></a>Notes about resetting the system</h3>
 
-<p>At the moment all configuration is stored in a volatile manner. Resetting either the Processing System using the <code>PS-SRST</code> or the Programmable Logic using the <code>PROGB</code> button will revert any changes. If you have a vanilly ZYBO with the Terminal still attached, an output like the following may occur.</p>
+<p>At the moment all configuration is stored in a volatile manner. Resetting either the Processing System using the <code>PS-SRST</code> or the Programmable Logic using the <code>PROGB</code> button will revert any changes. If you have a vanilla ZYBO with the Terminal still attached, an output like the following may occur.</p>
 
 <img src="images/tutorial-1/tutorial-138-after-ps-srst.png" title="Xilinx SDK: After Resetting the PS" />
 
