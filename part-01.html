@@ -37,60 +37,176 @@
 
 <h3><a name="creating-a-new-project" class="anchor" href="#creating-a-new-project"><span class="octicon octicon-link"></span></a>Creating a new project</h3>
 
+<p>After starting PlanAhead, you will be greeted by the welcome screen. Select <code>Create New Project</code>.</p>
+
 <img src="images/tutorial-1/tutorial-01.png" title="PlanAhead start screen" />
+
+<p>On the New Project wizard welcome page, clock <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-02.png" title="New Project dialog" />
+
+<p>Now we define a name and location for the project &mdash; I'll use <code>zybo_tutorial_1</code> &mdash; and then click <code>Next</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-03.png" title="New Project dialog: Name and Location" />
+
+<p>Since we create a project from ground up, select <code>RTL Project</code> and click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-04.png" title="New Project dialog: Project Type" />
+
+<p>Now we get to select the board. ZedBoard users may find their board in the <code>Boards</code> tab. ZYBO users will have to select the chip at the time being. From looking at the board we can see that this is a <code>Zynq-7000</code> series <code>commercial</code> grade <code>CLG400</code> chip, with speed grade <code>-1</code>. Using the filters we'll eventually find the <code>xc7z010clg400-1</code> part, which is the Zynq-7010 on the ZYBO. Select it and click <code>Next</code>.</p> 
+
 <img src="images/tutorial-1/tutorial-05.png" title="New Project dialog: Default Part" />
+
+<p>On the summary screen we confirm the selection and click <code>Finish</code> to be taken to the Project Manager.</p>
+
 <img src="images/tutorial-1/tutorial-06.png" title="New Project dialog: Summary" />
 
 <h3><a name="creating-the-embedded-project" class="anchor" href="#creating-the-embedded-project"><span class="octicon octicon-link"></span></a>Creating the embedded project</h3>
 
+<p>The <code>Project Manager</code> is part of the main screen of PlanAhead and shows the current target as well as project settings. It also presents shortcuts to the common steps in the workflow on the left, in the <code>Flow Navigator</code>.</p>
+
 <img src="images/tutorial-1/tutorial-07.png" title="PlanAhead" />
+
+<p>Before we can begin, we will verify the HDL language settings in the <code>Tools, Project Settings</code> menu.</p>
+
 <img src="images/tutorial-1/tutorial-08-1.png" title="PlanAhead: Project Settings" />
+
+<p>Make sure that the <code>Target language</code> is set to either <code>Verilog</code> or <code>VHDL</code>, whichever you prefer. In this tutorial I will assume you selected <code>VHDL</code> here. Click <code>OK</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-08-2.png" title="Project Settings: VHDL" />
+
+<p>Next we will add some sources to the project. Select <code>Add Sources</code> in the Project Manager tab of the Flow Navigator on the left..</p>
+
 <img src="images/tutorial-1/tutorial-09-1.png" title="Project Settings: Adding Sources" />
+
+<p>Select <code>Add or Create Embedded Sources</code> and click <code>Next</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-09-2.png" title="Add Sources: VHDL" />
+
+<p>On the following screen, click <code>Create Sub-Design</code>.</p>
+
 <img src="images/tutorial-1/tutorial-10.png" title="Add Sources: Add or Create Embedded Sources" />
+
+<p>Enter the name of the new module. I'll use the default, <code>module-1</code> here.</p>
+
 <img src="images/tutorial-1/tutorial-11.png" title="Create Embedded Sources: Name" />
+
+<p>You will find the new module and its location in the list. Click <code>Finish</code> to be taken to Xilinx Platform Studio (XPS).</p>
+
 <img src="images/tutorial-1/tutorial-12.png" title="Add Sources: Add or Create Embedded Sources (after)" />
 
 <h3><a name="xps-prepare" class="anchor" href="#xps-prepare"><span class="octicon octicon-link"></span></a>Preparing the board</h3>
 
+<p>After XPS has opened, you'll be asked to add a new Processing System7 instance to the otherwise empty board. Confirm to do so by clicking <code>Yes</code>.</p>
+
 <img src="images/tutorial-1/tutorial-13.png" title="Xilinx Platform Studio: Add PS7 System" />
+
+<p>You will be presented with the Zynq tab of the System Assembly View. This is the place to configure the Zynq peripherals like the interrupt and memory controllers, clock generators etc. We won't use any of that in this tutorial.</p>
+<p>Within the Zynq tab, click the <code>Import</code> button to import a board description.</p>
+
 <img src="images/tutorial-1/tutorial-14.png" title="Xilinx Platform Studio: System Assembly View" />
+
+<p>ZedBoard users may select the ZedBoard template here. There is no default template for the ZYBO at the moment, but we can download a ZYBO Board Definition file from the Digilent ZYBO product page. Click the <code>+</code> button to add that file.</p>
+
 <img src="images/tutorial-1/tutorial-15.png" title="Import Zynq Processing System Configurations" />
+
+<p>After adding a user template &mdash; in this case, the <code>ZYBO_zynq_def.xml</code> provided by Digilent &mdash; we can select it in the list. Click <code>OK</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-16.png" title="Import Zynq Processing System Configurations: Added" />
+
+<p>Confirm that we want to overwrite any existing settings by clicking <code>Yes</code>.</p>
+
 <img src="images/tutorial-1/tutorial-17.png" title="Import Zynq Processing System Configurations: Confirmation" />
+
+<p>Nothing visible will have changed the System Assembly View. Click the <code>Bus Interface</code> tab to see that we indeed have an empty board with only a Processing System7 instance added to it.</p>
+
 <img src="images/tutorial-1/tutorial-18.png" title="Import Zynq Processing System Configurations: Bus Interfaces" />
 
 <h3><a name="xps-create" class="anchor" href="#xps-create"><span class="octicon octicon-link"></span></a>Creating a peripheral</h3>
 
+<p>In order to create a new peripheral, select <code>Hardware, Create or Import Peripheral</code> to be taken to the next wizard.</p>
+
 <img src="images/tutorial-1/tutorial-19.png" title="Xilinx Platform Studio: Create Peripheral" />
+
+<p>On the welcome screen, click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-20.png" title="Create or Import Peripheral: Welcome" />
+
+<p>Notice the design flow on the left and select <code>Create templates for a new peripheral</code>. Click <code>Next</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-21.png" title="Create or Import Peripheral: Peripheral Flow" />
+
+<p>Select <code>To an XPS project</code> in order to create the peripheral locally, then click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-22.png" title="Create or Import Peripheral: Repository or Project" />
+
+<p>Enter a name, version and optionally a description. In this tutorial, I'll use <code>ledbtnsw</code> with the default values. Note that the description field only accepts ASCII and no fancy UTC8 characters. Click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-23.png" title="Create or Import Peripheral: Name and Version" />
+
+<p>On the Bus Interface screen, the preferred bus connection can be selected. In case of the Zynq, AXI4 is the way to go. Since for this tutorial we do not need the bus at all, we'll simply select the tiniest variant, which is <code>AXI4-Light</code> and then click <code>Next</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-24.png" title="Create or Import Peripheral: Bus Interface" />
+
+<p>Change nothing on the IPIF Services screen, and click <code>Next</code> to continue. This way we'll get some software accessible registers we don't need for this tutorial, but this allows for easy extension of the project afterwards.</p>
+
 <img src="images/tutorial-1/tutorial-25.png" title="Create or Import Peripheral: IPIF Services" />
+
+<p>Select any amount of software accessible registers here if you plan on playing with them afterwards. We don't need them for this tutorial, so I'll selected <code>1</code>. Then click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-26.png" title="Create or Import Peripheral: User S/W Registers" />
+
+<p>On the IP Interconnect screen nothing needs to be changed, so click <code>Next</code> to get rid of it.</p>
+
 <img src="images/tutorial-1/tutorial-27.png" title="Create or Import Peripheral: IP Interconnect" />
+
+<p>The Peripheral Simulation Support screen allows for the addition of Bus Functional Modeling support for the simulator. We don't need that for this tutorial, so click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-29.png" title="Create or Import Peripheral: Peripheral Simulation Support" />
+
+<p>In the Peripheral Implementation Support screen, be select <code>Generate ISE and XST project files</code> and <code>Generate template driver files</code>. Only check the Verilog option if you plan on using that instead of VHDL. Click <code>Next</code> to arrive at the finish line.</p>
+
 <img src="images/tutorial-1/tutorial-30.png" title="Create or Import Peripheral: Peripheral Implementation Support" />
+
+<p>On the last screen, simply click <code>Finish</code> and wait for the wizard to complete.</p>
+
 <img src="images/tutorial-1/tutorial-31.png" title="Create or Import Peripheral: Finish" />
+
+<p>Back in XPS, you'll find the IP Catalog on the left. Scroll down and open the <code>Project Local PCores</code> and <code>USER</code> tree to find the new IP. Note that it is currently marked as <code>DEVELOPMENT</code>, meaning that any run of the synthesis tool later on will also synthesize this IP.</p>
+
 <img src="images/tutorial-1/tutorial-32.png" title="Xilinx Platform Studio: IP Catalog" />
+
+<p>Right-click on the entry and select <code>View MPD</code> to open the Microprocessor Peripheral Description file.</p>
+
 <img src="images/tutorial-1/tutorial-33.png" title="Xilinx Platform Studio: IP Catalog: View MPD" />
+
+<p>Take note of the <code>ARCH_SUPPORT_MAP</code> line; you will need re-add it later on.</p>
+
 <img src="images/tutorial-1/tutorial-34.png" title="Xilinx Platform Studio: IP Catalog: MPD (others=DEVELOPMENT)" />
 
 <h3><a name="xps-add" class="anchor" href="#xps-add"><span class="octicon octicon-link"></span></a>Adding the peripheral</h3>
 
+<p>Right-click the IP again and slect <code>Add IP</code> to add it to the design.</p>
+
 <img src="images/tutorial-1/tutorial-35.png" title="Xilinx Platform Studio: IP Catalog: Add IP" />
+
+<p>Confirm the action by clicking <code>Yes</code>.</p>
+
 <img src="images/tutorial-1/tutorial-36.png" title="Xilinx Platform Studio: IP Catalog: Add IP, Confirmation" />
+
+<p>On the XPS Core Config window, you can review all generics/parameters setting for the IP. Simply click <code>OK</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-37.png" title="XPS Core Config" />
+
+<p>XPS detects that our IP contains a bus interface and will help us connecting it. Select the <code>processing_system_7_0</code> instance and click <code>OK</code> to continue.</p>
+
 <img src="images/tutorial-1/tutorial-38.png" title="Instantiate and Connect IP" />
+
+<p>In the <code>Bus Interfaces</code> tab we can now confirm that a single instance of our IP has been added to the design and is connected to the processing system as an AXI slave.</p>
+
 <img src="images/tutorial-1/tutorial-39.png" title="Xilinx Platform Studio: Bus Interface" />
 
-Leave XPS open for the moment since we will need it again.
+<p>We will now edit the created IP. Leave XPS open for the moment since we will need it again later on.</p>
 
 <h3>
 <a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>

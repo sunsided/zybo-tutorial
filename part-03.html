@@ -37,38 +37,95 @@
 
 <h3><a name="peripheral-import" class="anchor" href="#peripheral-import"><span class="octicon octicon-link"></span></a>Re-importing the peripheral</h3>
 
+<p>Head back to XPS. Select <code>Hardware, Create or Import Peripheral</code> again. Click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-57.png" title="Xilinx Platform Studio: Peripheral import" />
+
+<p>This time, we chose <code>Import existing peripheral</code> and  <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-58.png" title="Import Peripheral: Peripheral flow" />
+
+<p>Like before, select <code>To an XPS project</code>, then click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-59.png" title="Import Peripheral: Repository or project" />
+
+<p>Select the IP we just edited and click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-60.png" title="Import Peripheral: Name and version" />
+
+ <p>Confirm that we want to overwrite the local design with the changed IP description by clicking <code>Yes</code>.</p>
+
 <img src="images/tutorial-1/tutorial-61.png" title="Overwrite Existing Peripheral" />
+
+<p>Check <code>HDL sources files</code> and click <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-62.png" title="Import Peripheral: Source File Types" />
+
+<p>After that we are presented with two ways to select the HDL source files. If you are not able to import the files from ISE (option 1), select the PAO approach (option 2).</p>
 
 <h4><a name="peripheral-import-xst" class="anchor" href="#peripheral-import-xst"><span class="octicon octicon-link"></span></a>Option 1: Importing the XST project file</h3>
 
+<p>Select <code>Use an XST project file</code> and click <code>Browse</code>.</p>
+
 <img src="images/tutorial-1/tutorial-63.png" title="Import Peripheral: HDL Source Files" />
+
+<p>Navigate to the IP's <code>devl/projnav</code> directory and open the <code><strong>your-ip</strong>.prj</code> from there.</p>
+
 <img src="images/tutorial-1/tutorial-64.png" title="Import Peripheral: Select XST Project File" />
+
+<p>Click <code>Next</code> on the import dialog. And confirm that these files are to be imported by clicking <code>Next</code> again.</p>
+
 <img src="images/tutorial-1/tutorial-65.png" title="Import Peripheral: HDL Analysis Information" />
+
+<p>If everything works, you will be taken to to the Bus Interfaces dialog. It is possible that the import fails due to errors in your VHDL description. Head back to ISE and fix the error then. Another problem may be that the project file is in a format the importer does not like. This seems to happen sometimes; In this case, simply go back and use option 2, the PAO approach.</p>
 
 <h4><a name="peripheral-import-pao" class="anchor" href="#peripheral-import-pao"><span class="octicon octicon-link"></span></a>Option 2: Importing the PAO project file</h3>
 
+<p>Alternatively if the list of files used has not changed (i.e. like in this case where we only edited existing files), we can import an PAO file by selecting <code>Use existing Peripheral Analysis Order file</code> and clicking <code>Browse</code>.
+
 <img src="images/tutorial-1/tutorial-66.png" title="Import Peripheral: Select XST Project File" />
+
+<p>Select the PAO file in the <code>data</code> directory of the IP.</p>
+
 <img src="images/tutorial-1/tutorial-67.png" title="Import Peripheral: Select PAO file" />
+
+<p>Click <code>Next</code> to import.</p>
+
 <img src="images/tutorial-1/tutorial-68.png" title="Import Peripheral: HDL Source Files" />
+
+<p>The list of files is a bit shorter than with the XST approach. Click <code>Next</code> to accept.</p>
+
 <img src="images/tutorial-1/tutorial-69.png" title="Import Peripheral: HDL Analysis Information" />
+
+<p>Again, if everything works we will be taken to the Bus Interfaces dialog.</p>
 
 <h3><a name="peripheral-import-configure" class="anchor" href="#peripheral-import-configure"><span class="octicon octicon-link"></span></a>IP Configuration</h3>
 
+<p>Since we created an <code>AXI4-Lite</code> peripheral with only <code>Slave</code> functionality, we will select that here an confirm using <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-70.png" title="Import Peripheral: Bus Interfaces" />
+
+<p>On the AXI4LITE Port screen nothing needs to be changed, so simply ignore it by clicking <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-71.png" title="Import Peripheral: AXI4LITE Port" />
+
+<p>At the AXI4LITE Parameter screen we need to select the value for the <code>Parameter determine high address</code> field. Select the <code>S_HIGHADDR</code> generic from the dropdown list and continue using <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-72.png" title="Import Peripheral: AXI4LITE Parameter (S_HIGHADDR)" />
-<img src="images/tutorial-1/tutorial-73.png" title="Import Peripheral: Parameter Attributes" />
 
 Next we can check our ports attributes (i.e. the direction mode, the name, default values etc.). Note that this dialog
 has a bug as per ISE Suite 14.7 preventing the displayed parameters to change once a value is selected. This does
 not affect the IP itself, so you can safely ignore it.
 
+<img src="images/tutorial-1/tutorial-73.png" title="Import Peripheral: Parameter Attributes" />
+
+<p>On the Parameter Attributes screen we could change our generics, but since we already set a reasonable default in the VHDL file, we can simply skip this window by selecting <code>Next</code>.</p>
+
 <img src="images/tutorial-1/tutorial-74.png" title="Import Peripheral: Port Attributes" />
+
+<p>On the final dialog window, select <code>Finish</code> and wait.</p>
+
+
 <img src="images/tutorial-1/tutorial-75.png" title="Import Peripheral: Finish Line" />
 
 <h3><a name="update-ip-status" class="anchor" href="#update-ip-status"><span class="octicon octicon-link"></span></a>Update IP status</h3>

@@ -37,33 +37,111 @@
 
 <h3><a name="navigating-to-source" class="anchor" href="#navigating-to-source"><span class="octicon octicon-link"></span></a>Navigating to the source files</h3>
 
+<p>Open the file browser of your choice and navigate to the project directory. You'll find a directory called <code><strong>your-project</strong>.srcs</code> which contains the design sources. Enter it.<p>
+
 <img src="images/tutorial-1/tutorial-40.png" title="Project directory" />
+
+<p>Within the <code>sources_1/edk/<strong>your-module</strong>/pcores</code> directory our project local IPs can be found.<p>
+
 <img src="images/tutorial-1/tutorial-41.png" title="PCores directory" />
+
+<p>Within every IP directory, a <code>hdl/vhdl</code> (or <code>hdl/verilog</code>) directory exists, containing the IP's hardware description. Note the existence of two files here, <code><strong>your-ip</strong>.vhd</code> and <code>user_logic.vhd</code>. The former one acts as a wrapper around all user-defined VHDL files (<code>user_logic.vhd</code> being almost the only one at the moment) and we will need to edit both.</p>
+<p>You may use any text editor of your choice on these files now, but this tutorial will use Xilinx ISE Project Navigator to do so in the following steps.</p>
+
 <img src="images/tutorial-1/tutorial-42.png" title="VHDL directory" />
+
+<p>To find the ISE project file, head to the <code>devl/projnav</code> directory of the IP. We'll find a <code><strong>your-ip</strong>.xise</code> file here, which we'll open by double-clicking it.</code></p>
+
 <img src="images/tutorial-1/tutorial-43.png" title="projnav directory" />
 
 <h3><a name="ise" class="anchor" href="#ise"><span class="octicon octicon-link"></span></a>Editing the user logic</h3>
 
+<p>This will bring us the ISE Project Navigator where we can see the two files described earlier along with a <code>axi_lite_ipif</code> file which handles the bus communication for us. Open the <code>user_logic.vhd</code> by double-clicking it. (Note the <code>USER_LOGIC_I</code> identifier which is the name of the instance of this IP withing the wrapper file.)</p>
+
 <img src="images/tutorial-1/tutorial-44.png" title="ISE Project Navigator" />
+
+<p>The <code>user_logic.vhd</code> contains the VHDL description of this IP along with some bus and software accessible register code. Stick to the lines marked with <code>ADD USER ... BELOW/ABOVE THIS LINE</code> and don't touch anything else for now.</p>
+
+<p>Find the lines <code>ADD USER GENERICS BELOW THIS LINE</code> and <code>ADD USER PORTS BELOW THIS LINE</code> within the <code>entity</code> block.</p>
+
 <img src="images/tutorial-1/tutorial-45.png" title="user_logic.vhd" />
+
+<p>Let's add some generics and port definitions here.</p>
+<p><code>C_NUM_LENS</code> will be an integer generic defining the number of LEDs, Switches and Buttons to use. We will set that to <code>4</code> for the ZYBO board, giving us</p>
+
+  <p><pre><code>C_NUM_LEDS : integer := 4;</code></pre></p>
+
+<p><strong>in addition</strong> to the existing lines in the <code>generic</code> block.</p>
+
+<p>Also we will need some inputs for the switches and buttons, as well as outputs for the LEDs within the <code>port</code> region, which we'll define as</p>
+<p><pre><code>Switches : in  std_logic_vector(C_NUM_LEDS-1 downto 0);
+Buttons  : in  std_logic_vector(C_NUM_LEDS-1 downto 0);
+LEDs     : out std_logic_vector(C_NUM_LEDS-1 downto 0);
+</code></pre></p>
+
+<p>Again, no existing lines will be deleted.</code>
+
 <img src="images/tutorial-1/tutorial-46.png" title="user_logic.vhd: adding ports and generics" />
+
+<p>Scroll down to the <code>architecture</code> part of the IP and find the line called <code>USER logic implementation added here</code>.</p>
+
 <img src="images/tutorial-1/tutorial-47.png" title="user_logic.vhd: logic location" />
+
+<p>We will add a simple behavioural logic here that <code>xor</code>s Switches with Button states and outputs that to the LEDs.</p>
+
+<p>Add</p>
+
+<p><pre><code>LEDs <= Switches xor Buttons;</code></pre></p>
+
+<p>and, again, make sure nothing else will be deleted.</p>
+
 <img src="images/tutorial-1/tutorial-48.png" title="user_logic.vhd: adding logic" />
 
 <h3><a name="ise" class="anchor" href="#ise"><span class="octicon octicon-link"></span></a>Editing the wrapper</h3>
 
+<p>Since we added ports, we will need to poke holes for them in the wrapper instance. Open the <code><strong>your-ip</strong>.vhd</code> file by double-clicking on the name in the Hierarchy tree.</p>
+
 <img src="images/tutorial-1/tutorial-49.png" title="wrapper" />
+
+<p>Enter (or paste) the same generics and port definitions you used in the <code>user_logic.vhd</code> in the wrapper to make them visible to the outside.</p>
+
 <img src="images/tutorial-1/tutorial-50.png" title="wrapper: adding ports and generics" />
+
+<p>Scroll down to find the <code>generic map</code> and <code>port map</code> parts in the <code>USER_LOGIC_I</code> entity instantiation.</p>
+
 <img src="images/tutorial-1/tutorial-51.png" title="wrapper: ports and generics map location" />
+
+<p>Here we will connect the outside-facing generic names with the generic names in the <code>user_logic.vhd</code>, as well as the outside-facing port names with the ones used internalls. Since they are identical, we can simply use</p>
+
+<p><pre><code>C_NUM_LEDS => C_NUM_LEDS, -- note the comma here</code></pre></p>
+
+<p>for the generics and</p>
+
+<p><pre><code>Switches => Switches,
+Buttons  => Buttons,
+LEDs     => LEDs,</code></pre></p>
+
+<p>for the ports. Make sure nothing else is changed.</p>
+
 <img src="images/tutorial-1/tutorial-52.png" title="wrapper: adding ports and generics map" />
 
 <h3><a name="ise" class="anchor" href="#ise"><span class="octicon octicon-link"></span></a>Checking syntax</h3>
 
+<p>Instead of relying on the synthesis to fail in case of an error, we can use ISE to at least check if we got the syntax right. In the <code>Design</code> tab, open the <code>Synthesize - XST</code> tree and find <code>Check Syntax</code>.</p>
+
+<p>Right-click it and select <code>Run</code>.</p>
+
 <img src="images/tutorial-1/tutorial-53.png" title="check syntax" />
+
+<p>You can do so for every edited file. If the syntax check succeeds, the icon will turn green.</p>
+
 <img src="images/tutorial-1/tutorial-54.png" title="check syntax succeeded" />
+
+<p>Should you want to re-run a syntax check, right click the option again and select <code>ReRun</code>. (You could have double-clicked the option to run the syntax check in the first place, but do to quirky behaviour of ISE this is a safer way to know what is happening &mdash; or why nothing is.)</p>
+
 <img src="images/tutorial-1/tutorial-55.png" title="re-run syntax check" />
 
-Close ISE and head back to XPS.
+<p>After that, close ISE and head back to XPS.</p>
 
 <h3>
 <a name="pats" class="anchor" href="#pats"><span class="octicon octicon-link"></span></a>Parts of the tutorial</h3>
