@@ -45,29 +45,29 @@
 
 <img src="images/tutorial-1/tutorial-41.png" title="PCores directory" />
 
-<p>Within every IP directory, a <code>hdl/vhdl</code> (or <code>hdl/verilog</code>) directory exists, containing the IP's hardware description. Note the existence of two files here, <code><strong>your-ip</strong>.vhd</code> and <code>user_logic.vhd</code>. The former one acts as a wrapper around all user-defined VHDL files (<code>user_logic.vhd</code> being almost the only one at the moment) and we will need to edit both.</p>
+<p>Within every IP directory, a <code>hdl/vhdl</code> (or <code>hdl/verilog</code>) directory exists, containing the IP's HDL code. Note the existence of two files here, <code><strong>your-ip</strong>.vhd</code> and <code>user_logic.vhd</code>. The former one acts as a wrapper around all user-defined VHDL files (<code>user_logic.vhd</code> seems to be the only one at the moment, but there is an additional file which is not in this directory) and we will need to edit both.</p>
 <p>You may use any text editor of your choice on these files now, but this tutorial will use Xilinx ISE Project Navigator to do so in the following steps.</p>
 
 <img src="images/tutorial-1/tutorial-42.png" title="VHDL directory" />
 
-<p>To find the ISE project file, head to the <code>devl/projnav</code> directory of the IP. We'll find a <code><strong>your-ip</strong>.xise</code> file here, which we'll open by double-clicking it.</code></p>
+<p>To find the ISE project file, head to the <code>devl/projnav</code> directory of the IP. You'll find a <code><strong>your-ip</strong>.xise</code> file here, which we'll open by double-clicking it.</code></p>
 
 <img src="images/tutorial-1/tutorial-43.png" title="projnav directory" />
 
 <h3><a name="ise" class="anchor" href="#ise"><span class="octicon octicon-link"></span></a>Editing the user logic</h3>
 
-<p>This will bring us the ISE Project Navigator where we can see the two files described earlier along with a <code>axi_lite_ipif</code> file which handles the bus communication for us. Open the <code>user_logic.vhd</code> by double-clicking it. (Note the <code>USER_LOGIC_I</code> identifier which is the name of the instance of this IP withing the wrapper file.)</p>
+<p>This will bring us the ISE Project Navigator where we can see the two files described earlier, along with an <code>axi_lite_ipif</code> file which handles the bus communication for us. Don't touch that one. Open the <code>user_logic.vhd</code> by double-clicking it. (Note the <code>USER_LOGIC_I</code> identifier which is the name of the instance of this IP withing the wrapper file.)</p>
 
 <img src="images/tutorial-1/tutorial-44.png" title="ISE Project Navigator" />
 
-<p>The <code>user_logic.vhd</code> contains the VHDL description of this IP along with some bus and software accessible register code. Stick to the lines marked with <code>ADD USER ... BELOW/ABOVE THIS LINE</code> and don't touch anything else for now.</p>
+<p>The <code>user_logic.vhd</code> contains the VHDL description of this IP along with some bus and software accessible register code. Always stick to the lines marked with <code>ADD USER ... BELOW/ABOVE THIS LINE</code> and don't touch anything else for now.</p>
 
 <p>Find the lines <code>ADD USER GENERICS BELOW THIS LINE</code> and <code>ADD USER PORTS BELOW THIS LINE</code> within the <code>entity</code> block.</p>
 
 <img src="images/tutorial-1/tutorial-45.png" title="user_logic.vhd" />
 
 <p>Let's add some generics and port definitions here.</p>
-<p><code>C_NUM_LENS</code> will be an integer generic defining the number of LEDs, Switches and Buttons to use. We will set that to <code>4</code> for the ZYBO board, giving us</p>
+<p>We will define a generic called <code>C_NUM_LEDS</code> that will be an integer defining the number of LEDs, Switches and Buttons to use. We will set that to <code>4</code> for the ZYBO board, giving us</p>
 
   <p><pre><code>C_NUM_LEDS : integer := 4;</code></pre></p>
 
@@ -79,7 +79,7 @@ Buttons  : in  std_logic_vector(C_NUM_LEDS-1 downto 0);
 LEDs     : out std_logic_vector(C_NUM_LEDS-1 downto 0);
 </code></pre></p>
 
-<p>Again, no existing lines will be deleted.</code>
+<p>Again, <strong>no</strong> existing lines will be deleted.</p>
 
 <img src="images/tutorial-1/tutorial-46.png" title="user_logic.vhd: adding ports and generics" />
 
@@ -87,7 +87,7 @@ LEDs     : out std_logic_vector(C_NUM_LEDS-1 downto 0);
 
 <img src="images/tutorial-1/tutorial-47.png" title="user_logic.vhd: logic location" />
 
-<p>We will add a simple behavioural logic here that <code>xor</code>s Switches with Button states and outputs that to the LEDs.</p>
+<p>We will add a simple combinatorial logic here that <code>xor</code>s Switches with Button states and outputs that to the LEDs.</p>
 
 <p>Add</p>
 
@@ -99,7 +99,7 @@ LEDs     : out std_logic_vector(C_NUM_LEDS-1 downto 0);
 
 <h3><a name="ise" class="anchor" href="#ise"><span class="octicon octicon-link"></span></a>Editing the wrapper</h3>
 
-<p>Since we added ports, we will need to poke holes for them in the wrapper instance. Open the <code><strong>your-ip</strong>.vhd</code> file by double-clicking on the name in the Hierarchy tree.</p>
+<p>Since we added ports, we will need to poke holes for them in the wrapper. Open the <code><strong>your-ip</strong>.vhd</code> file by double-clicking on the name in the Hierarchy tree.</p>
 
 <img src="images/tutorial-1/tutorial-49.png" title="wrapper" />
 
@@ -111,7 +111,7 @@ LEDs     : out std_logic_vector(C_NUM_LEDS-1 downto 0);
 
 <img src="images/tutorial-1/tutorial-51.png" title="wrapper: ports and generics map location" />
 
-<p>Here we will connect the outside-facing generic names with the generic names in the <code>user_logic.vhd</code>, as well as the outside-facing port names with the ones used internalls. Since they are identical, we can simply use</p>
+<p>Here we will connect the outside-facing generic names with the generic names in the <code>user_logic.vhd</code>, as well as the outside-facing port names with the ones used internally. Since they are identical, we can simply use</p>
 
 <p><pre><code>C_NUM_LEDS => C_NUM_LEDS, -- note the comma here</code></pre></p>
 
@@ -127,7 +127,7 @@ LEDs     => LEDs,</code></pre></p>
 
 <h3><a name="ise" class="anchor" href="#ise"><span class="octicon octicon-link"></span></a>Checking syntax</h3>
 
-<p>Instead of relying on the synthesis to fail in case of an error, we can use ISE to at least check if we got the syntax right. In the <code>Design</code> tab, open the <code>Synthesize - XST</code> tree and find <code>Check Syntax</code>.</p>
+<p>Instead of relying on the synthesis to fail in case of an error (which it mostly does rather late), we can use ISE to at least check if we got the syntax right. In the <code>Design</code> tab, open the <code>Synthesize - XST</code> tree and find <code>Check Syntax</code>.</p>
 
 <p>Right-click it and select <code>Run</code>.</p>
 
@@ -137,7 +137,7 @@ LEDs     => LEDs,</code></pre></p>
 
 <img src="images/tutorial-1/tutorial-54.png" title="check syntax succeeded" />
 
-<p>Should you want to re-run a syntax check, right click the option again and select <code>ReRun</code>. (You could have double-clicked the option to run the syntax check in the first place, but do to quirky behaviour of ISE this is a safer way to know what is happening &mdash; or why nothing is.)</p>
+<p>Should you want to re-run a syntax check, right click the option again and select <code>ReRun</code>. (You could have double-clicked the option to run the syntax check in the first place, but due to quirky behaviour of ISE this is a safer way to know what is happening &mdash; or why nothing is.)</p>
 
 <img src="images/tutorial-1/tutorial-55.png" title="re-run syntax check" />
 
