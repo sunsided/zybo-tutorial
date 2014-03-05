@@ -37,7 +37,8 @@
 
 <h3><a name="peripheral-import" class="anchor" href="#peripheral-import"><span class="octicon octicon-link"></span></a>Re-importing the peripheral</h3>
 
-<p>Head back to XPS. (If you accidentally closed it in the meantime, you can open it again from PlanAhead by double-clicking on the <code><strong>your-module</strong>.xmp</code> file in the Sources pane.) In XPS, select <code>Hardware, Create or Import Peripheral</code> again. Click <code>Next</code>.</p>
+<p>Head back to XPS. (If you accidentally closed it in the meantime, you can open it again from PlanAhead by double-clicking on the <code><strong>your-module</strong>.xmp</code> file in the Sources pane.)</p>
+<p>In XPS, select <code>Hardware, Create or Import Peripheral</code> again. Click <code>Next</code>.</p>
 
 <img src="images/tutorial-1/tutorial-57.png" title="Xilinx Platform Studio: Peripheral import" />
 
@@ -73,7 +74,7 @@
 
 <img src="images/tutorial-1/tutorial-64.png" title="Import Peripheral: Select XST Project File" />
 
-<p>Click <code>Next</code> on the import dialog. And confirm that these files are to be imported by clicking <code>Next</code> again.</p>
+<p>Click <code>Next</code> on the import dialog and confirm that these files are to be imported by clicking <code>Next</code> again.</p>
 
 <img src="images/tutorial-1/tutorial-65.png" title="Import Peripheral: HDL Analysis Information" />
 
@@ -81,7 +82,7 @@
 
 <h4><a name="peripheral-import-pao" class="anchor" href="#peripheral-import-pao"><span class="octicon octicon-link"></span></a>Option 2: Importing the PAO project file</h3>
 
-<p>Alternatively if the list of files used has not changed (i.e. like in this case where we only edited existing files), we can import an PAO file by selecting <code>Use existing Peripheral Analysis Order file</code> and clicking <code>Browse</code>.
+<p>Alternatively if the list of files used has not changed (i.e. like in this case where we only added logic to existing files), we can import an PAO file by selecting <code>Use existing Peripheral Analysis Order file</code> and clicking <code>Browse</code>.</p>
 
 <img src="images/tutorial-1/tutorial-66.png" title="Import Peripheral: Select XST Project File" />
 
@@ -101,7 +102,7 @@
 
 <h3><a name="peripheral-import-configure" class="anchor" href="#peripheral-import-configure"><span class="octicon octicon-link"></span></a>IP Configuration</h3>
 
-<p>Since we created an <code>AXI4-Lite</code> peripheral with only <code>Slave</code> functionality, we will select that here an confirm using <code>Next</code>.</p>
+<p>Since we created an <code>AXI4-Lite</code> peripheral with only <code>Slave</code> functionality, we will select that and confirm using <code>Next</code>.</p>
 
 <img src="images/tutorial-1/tutorial-70.png" title="Import Peripheral: Bus Interfaces" />
 
@@ -113,18 +114,18 @@
 
 <img src="images/tutorial-1/tutorial-72.png" title="Import Peripheral: AXI4LITE Parameter (S_HIGHADDR)" />
 
-Next we can check our ports attributes (i.e. the direction mode, the name, default values etc.). Note that this dialog
-has a bug as per ISE Suite 14.7 preventing the displayed parameters to change once a value is selected. This does
-not affect the IP itself, so you can safely ignore it.
+<p>On the Parameter Attributes screen we could change our generics, but since we already set a reasonable default in the VHDL file, we can simply skip this window by selecting <code>Next</code>.</p>
 
 <img src="images/tutorial-1/tutorial-73.png" title="Import Peripheral: Parameter Attributes" />
 
-<p>On the Parameter Attributes screen we could change our generics, but since we already set a reasonable default in the VHDL file, we can simply skip this window by selecting <code>Next</code>.</p>
+<p>Next we can check our ports attributes (i.e. the direction mode, the name, default values etc.). Note that this dialog
+has a bug as per ISE Suite 14.7 preventing the displayed parameters to change once a value is selected. This does
+not affect the IP itself, so you can safely ignore it.</p>
+<p>Click <code>Next</code> to continue.</p>
 
 <img src="images/tutorial-1/tutorial-74.png" title="Import Peripheral: Port Attributes" />
 
 <p>On the final dialog window, select <code>Finish</code> and wait.</p>
-
 
 <img src="images/tutorial-1/tutorial-75.png" title="Import Peripheral: Finish Line" />
 
@@ -139,11 +140,11 @@ not affect the IP itself, so you can safely ignore it.
 
 <img src="images/tutorial-1/tutorial-77.png" title="Xilinx Platform Studio: IP Catalog: View MPD" />
 
-<p>You will notice that the <code>ARCH_SUPPORT_MAP</code> line is missing. Re-add it to the file, then select <code>Project, Rescan User Repository</code> to force XPS to re-read it.</p>
-
-<p>In case you didn't write it down, the missing line is:</p>
+<p>You will notice that the <code>ARCH_SUPPORT_MAP</code> line is missing. In case you didn't write it down, it was:</p>
 
 <p><pre><code>OPTION ARCH_SUPPORT_MAP = (others=DEVELOPMENT)</code></pre></p>
+
+<p>Re-add it to the file, then select <code>Project, Rescan User Repository</code> to force XPS to re-read it.</p>
 
 <img src="images/tutorial-1/tutorial-78.png" title="Xilinx Platform Studio: Rescan User Repositories" />
 
@@ -151,11 +152,11 @@ not affect the IP itself, so you can safely ignore it.
 
 <img src="images/tutorial-1/tutorial-79.png" title="Xilinx Platform Studio: IP Catalog: DEVELOPMENT" />
 
-<p>The import procedure should only be necessary when the public interface of the IP changes, i.e. when changes to the source wrapper file are made, or if additional files are added.</p>
+<p>The import procedure should only be necessary when the public interface of the IP changes, i.e. when changes to the IP wrapper file are made, or if additional files are added.</p>
 
 <h3><a name="configure-ports" class="anchor" href="#configure-ports"><span class="octicon octicon-link"></span></a>Configuring the IP ports</h3>
 
-<p>Head to the <code>Ports</code> tab of the System Assembly View. You will see that the re-imported IP now lists the three inputs we defined, and that they are currently unconnected. Note that the Range field matches the number of connections we defined in the generic parameter, <code>C_NUM_LEDS</code>.</p>
+<p>Head to the <code>Ports</code> tab of the System Assembly View. You will see that the re-imported IP now lists the two inputs and one output we defined, and that they are currently unconnected. Note that the Range field matches the number of connections we defined in the generic parameter, <code>C_NUM_LEDS</code>.</p>
 
 <img src="images/tutorial-1/tutorial-80.png" title="Xilinx Platform Studio: Ports tab" />
 
