@@ -174,8 +174,7 @@ SDK. We can do that now using the <code>File, Export, Export Hardware for SDK</c
 
 <p>Alternatively to using the SDK &mdash; or in addition to it &mdash; the FPGA can be configured (i.e. "programmed") right now using Xilinx iMPACT. We can do so by clicking <code>Launch iMPACT</code> in the Program and Debug section.</p>
 
-<p>Note that Zynq AP SoCs are bootstrapped by the ARM core, much like a regular microcontroller system where the FPGA acts as a slave during startup. That means that <strong>the following procedure will only work if the FPGA is already initialized by the ARM core</strong>, i.e. when the ARM core is already flashed with a program that initializes the FPGA. If you happen to have a vanilla ZYBO board with a Linux system running on the ARM Cortex, go on. Otherwise you will
-  have to create a program using Xilinx SDK first.<p>
+<p>Note that generally the Zynq AP SoCs are bootstrapped by the ARM core, much like a regular microcontroller system where the FPGA acts as a slave during startup. That means that generally using the FPGA logic will only work after the FPGA has been initialized by the ARM core, i.e. when the ARM core is already flashed with a program that initializes the FPGA. When using iMPACT to configure the FPGA on the fly, this restriction does not apply.<p>
 
 <img src="images/tutorial-1/tutorial-110.png" title="PlanAhead: Launch iMPACT" />
 
